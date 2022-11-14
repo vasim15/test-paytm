@@ -2,8 +2,12 @@ import express from "express";
 import cors from "cors";
 import paytmInti from "./paytm-init";
 import paytmVrfy from "./paytm-vrfy";
+import dotenv from 'dotenv';
 
+dotenv.config()
 const app = express();
+
+const PORT = process.env.PORT || 4410
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -13,6 +17,6 @@ app.post("/payment-initiate", paytmInti);
 app.post("/payment-verify", paytmVrfy);
 
 app.use((err, req, res, next) => console.log(err));
-app.listen(4415, () => {
-  console.log(`server running on 4415`);
+app.listen(PORT, () => {
+  console.log(`server running on ${PORT}`);
 });
