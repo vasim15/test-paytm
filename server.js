@@ -2,12 +2,9 @@ import express from "express";
 import cors from "cors";
 import paytmInti from "./paytm-init";
 import paytmVrfy from "./paytm-vrfy";
-import dotenv from 'dotenv';
 
-dotenv.config()
 const app = express();
-
-const PORT = process.env.PORT || 4410
+const PORT = process.env.PORT || 4415;
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));

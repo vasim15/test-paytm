@@ -16,6 +16,7 @@ export default (req, res, next) => {
       requestType: "Payment",
       mid: mig,
       websiteName: "WEBSTAGING",
+      industryType:"Retail",
       orderId: orderId,
       callbackUrl: cbUrl,
       txnAmount: {
@@ -64,28 +65,8 @@ export default (req, res, next) => {
             res.status(200).json({
               data: {
                 ...response,
-                req: req.body,
+                ...req.body,
                 cbUrl: cbUrl,
-                htmlBody: `<html>
-                       <head>
-                          <title>Show Payment Page</title>
-                       </head>
-                       <body>
-                          <center>
-                             <h1>Please do not refresh this page...</h1>
-                          </center>
-                          <form method="post" action="https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=${mig}&orderId=${orderId}" name="paytm">
-                             <table border="1">
-                                <tbody>
-                                    <input type="hidden"  name="mid" value="${mig}">
-                                    <input type="hidden" name="orderId" value="${orderId}">
-                                    <input type="hidden" name="txnToken" value="${response.body.txnToken}">
-                                </tbody>
-                             </table>
-                             <script type="text/javascript"> document.paytm.submit(); </script>
-                          </form>
-                       </body>
-                  </html>`,
               },
             });
           });
