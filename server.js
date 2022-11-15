@@ -15,7 +15,6 @@ app.use(express.json());
 app.get("/", (rq, rs) => rs.json({ message: "good attempt bhai.." }));
 app.post("/payment-initiate", paytmInti);
 app.post("/payment-verify", paytmVrfy);
-
 app.post("/king-rathode-payment-initiate", prodPaytmInti);
 app.post("/king-rathode-payment-verify", prodPaytmVrfy);
 
